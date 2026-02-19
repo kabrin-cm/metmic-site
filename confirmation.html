@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <title>You're Booked | Metmic Discovery Call</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0a1628;
+            --navy-light: #132038;
+            --navy-mid: #1a2d4e;
+            --gold: #c9a84c;
+            --gold-light: #dfc06b;
+            --gold-muted: rgba(201, 168, 76, 0.15);
+            --white: #ffffff;
+            --text-primary: #e8ecf1;
+            --text-secondary: #9aa5b4;
+            --border: rgba(201, 168, 76, 0.2);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { overflow-x: hidden; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--navy);
+            color: var(--text-primary);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Nav */
+        .nav {
+            padding: 16px 0;
+            background: rgba(10, 22, 40, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+        }
+
+        .nav-inner {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .nav-logo span { color: var(--gold); }
+
+        /* Hero */
+        .conf-hero {
+            padding: 80px 0 60px;
+            text-align: center;
+            position: relative;
+        }
+
+        .conf-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(201, 168, 76, 0.06) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .check-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--gold-muted);
+            border: 2px solid var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 2.5rem;
+            color: var(--gold);
+            animation: popIn 0.5s ease;
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0); opacity: 0; }
+            60% { transform: scale(1.2); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .conf-hero h1 {
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            color: var(--white);
+            margin-bottom: 16px;
+        }
+
+        .conf-hero .sub {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        /* Prep Section */
+        .prep {
+            padding: 60px 0;
+        }
+
+        .prep h2 {
+            font-size: 1.5rem;
+            color: var(--white);
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .prep-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .prep-step {
+            background: var(--navy-light);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px 28px;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .prep-num {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--gold-muted);
+            border: 1px solid var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--gold);
+            flex-shrink: 0;
+        }
+
+        .prep-step h3 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--white);
+            margin-bottom: 6px;
+        }
+
+        .prep-step p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        /* Divider */
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            opacity: 0.3;
+        }
+
+        /* Meet Suki */
+        .meet {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .meet-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: var(--navy-mid);
+            border: 2px solid var(--border);
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--gold);
+        }
+
+        .meet h2 {
+            font-size: 1.5rem;
+            color: var(--white);
+            margin-bottom: 8px;
+        }
+
+        .meet .title {
+            color: var(--gold);
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+
+        .meet p {
+            color: var(--text-secondary);
+            max-width: 520px;
+            margin: 0 auto;
+            font-size: 0.95rem;
+        }
+
+        /* Quick Stats */
+        .quick-stats {
+            padding: 40px 0 60px;
+        }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .mini-stat {
+            background: var(--navy-light);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .mini-stat .num {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        .mini-stat .label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 4px;
+        }
+
+        /* Contact */
+        .contact {
+            padding: 40px 0 60px;
+            text-align: center;
+        }
+
+        .contact p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+        }
+
+        .contact a {
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        .conf-footer {
+            padding: 32px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .conf-footer p {
+            font-size: 0.75rem;
+            color: #5a6577;
+            line-height: 1.8;
+        }
+
+        .conf-footer .brand {
+            margin-top: 16px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 600px) {
+            .stats-row { grid-template-columns: 1fr; }
+            .prep-step { flex-direction: column; gap: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="nav">
+    <div class="nav-inner">
+        <a href="index.html" class="nav-logo">Met<span>mic</span></a>
+    </div>
+</nav>
+
+<section class="conf-hero">
+    <div class="container">
+        <div class="check-circle">&#10003;</div>
+        <h1>You're Booked. We'll See You Soon.</h1>
+        <p class="sub">Your discovery call is confirmed. Check your email for the calendar invite. Here's what to expect and how to prepare so we can make the most of our 15 minutes together.</p>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="prep">
+    <div class="container">
+        <h2>Before Your Call, Think About These Three Things</h2>
+        <div class="prep-steps">
+            <div class="prep-step">
+                <div class="prep-num">1</div>
+                <div>
+                    <h3>Your Investment Goals</h3>
+                    <p>Are you looking for regular income, long-term growth, or both? Do you have a specific return target in mind? Knowing your goals helps us show you exactly how Metmic could fit your portfolio.</p>
+                </div>
+            </div>
+            <div class="prep-step">
+                <div class="prep-num">2</div>
+                <div>
+                    <h3>Your Account Type Preference</h3>
+                    <p>Metmic shares are eligible for TFSA, RRSP, RESP, FHSA, LIRA, and RRIF accounts. Think about which registered account you'd prefer to hold them in. If you're not sure, we'll help you figure out the most tax-efficient option.</p>
+                </div>
+            </div>
+            <div class="prep-step">
+                <div class="prep-num">3</div>
+                <div>
+                    <h3>Your Questions</h3>
+                    <p>Write down anything you're curious or concerned about. Safety? Liquidity? How the returns work? There are no bad questions. This call is designed to give you clarity, not a sales pitch.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="meet">
+    <div class="container">
+        <div class="meet-photo">SG</div>
+        <h2>You'll Be Speaking with Suki Gill</h2>
+        <p class="title">Co-Founder, CPA, CGA</p>
+        <p>Suki co-founded Metmic in 2011 and has spent 30 years in finance and accounting. He personally oversees the portfolio and will be the one on your call. He's also a high school basketball coach and community volunteer in Surrey. If you're local, you've probably seen him around.</p>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="quick-stats">
+    <div class="container">
+        <div class="stats-row">
+            <div class="mini-stat">
+                <div class="num">8.45%</div>
+                <div class="label">10-Year Avg Return</div>
+            </div>
+            <div class="mini-stat">
+                <div class="num">13 Years</div>
+                <div class="label">Track Record</div>
+            </div>
+            <div class="mini-stat">
+                <div class="num">$180M</div>
+                <div class="label">Under Management</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="contact">
+    <div class="container">
+        <p>Need to reschedule? No problem. Use the link in your confirmation email or reach us directly:</p>
+        <p><a href="mailto:info@met-capital.com">info@met-capital.com</a> &nbsp;|&nbsp; <a href="tel:6044491700">(604) 449-1700</a></p>
+    </div>
+</section>
+
+<footer class="conf-footer">
+    <div class="container">
+        <p>Metropointe Mortgage Investment Corporation shares are distributed by Metropointe Capital Inc., a registered Exempt Market Dealer. Past performance is not indicative of future results. All investments carry risk. This material is for informational purposes only and does not constitute financial advice.</p>
+        <p class="brand">&copy; 2026 Metropointe Capital Inc. All rights reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>
